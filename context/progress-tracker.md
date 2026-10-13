@@ -18,6 +18,8 @@ Update this file whenever the current phase, active feature, or implementation s
 - Editor chrome: added a controlled top navbar with sidebar toggle states and a floating, animated Projects sidebar with tabbed empty states and a New Project action.
 - Editor layout: composed the navbar and project sidebar into a reusable client-side layout with shared sidebar state.
 - Dialog pattern: confirmed the existing token-backed shadcn dialog supports title, description, and footer actions for a future dialog implementation.
+- Authentication: added ClerkProvider with the dark theme and app-token appearance variables, minimal responsive sign-in and sign-up pages, session-aware root redirects, and protected-by-default routing through `proxy.ts`.
+- Editor authentication: moved the editor entry point to `/editor` and added Clerk's built-in UserButton for profile settings and logout.
 
 ## In Progress
 
@@ -37,4 +39,4 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Session Notes
 
-- Design-system and editor chrome specifications are complete. Lint and production build pass.
+- Design-system, editor chrome, and authentication specifications are complete. Lint and production build pass.
