@@ -31,6 +31,7 @@ export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
   return (
     <aside
       aria-hidden={!isOpen}
+      inert={!isOpen}
       aria-label="Projects"
       className={cn(
         "fixed top-18 bottom-4 left-4 z-40 flex w-80 flex-col rounded-2xl border border-surface-border bg-surface/95 shadow-2xl backdrop-blur transition-transform duration-200 ease-out",
