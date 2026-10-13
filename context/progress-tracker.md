@@ -20,6 +20,7 @@ Update this file whenever the current phase, active feature, or implementation s
 - Dialog pattern: confirmed the existing token-backed shadcn dialog supports title, description, and footer actions for a future dialog implementation.
 - Authentication: added ClerkProvider with the dark theme and app-token appearance variables, minimal responsive sign-in and sign-up pages, session-aware root redirects, and protected-by-default routing through `proxy.ts`.
 - Editor authentication: moved the editor entry point to `/editor` and added Clerk's built-in UserButton for profile settings and logout.
+- Project dialogs: added the editor home prompt and create button, live slug preview, create/rename/delete dialogs, mock owned/shared project lists, owner-only sidebar actions, and mobile sidebar scrim dismissal.
 
 ## In Progress
 
@@ -39,4 +40,4 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Session Notes
 
-- Design-system, editor chrome, and authentication specifications are complete. Lint and production build pass.
+- Design-system, editor chrome, authentication, and project-dialog specifications are complete. Project dialogs use in-memory mock data only; lint and TypeScript checks pass.
