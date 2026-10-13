@@ -1,11 +1,14 @@
-import { EditorLayout } from "@/components/editor/editor-layout";
+import { auth } from "@clerk/nextjs/server";
 
-export default function EditorPage() {
+import { EditorLayout } from "@/components/editor/editor-layout";
+import { EditorHome } from "@/components/editor/editor-home";
+
+export default async function EditorPage() {
+  await auth.protect();
+
   return (
     <EditorLayout>
-      <div className="flex h-full items-center justify-center text-sm text-copy-muted">
-        Editor canvas
-      </div>
+      <EditorHome />
     </EditorLayout>
   );
 }
