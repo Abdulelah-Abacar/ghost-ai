@@ -18,6 +18,7 @@ interface ProjectSidebarProps {
   isOpen: boolean;
   onClose: () => void;
   projects: Project[];
+  activeRoomId?: string;
   onCreate: () => void;
   onOpen: (project: Project) => void;
   onRename: (project: Project) => void;
@@ -46,8 +47,10 @@ function ProjectList({
   onOpen,
   onRename,
   onDelete,
+  activeRoomId,
 }: {
   projects: Project[];
+  activeRoomId?: string;
   ownership: Project["ownership"];
   onOpen: (project: Project) => void;
   onRename: (project: Project) => void;
@@ -64,9 +67,17 @@ function ProjectList({
       {filtered.map((project) => (
         <div
           key={project.id}
-          className="group flex items-center gap-1 rounded-xl px-2 py-2 hover:bg-subtle"
+          className={cn(
+            "group flex items-center gap-1 rounded-xl px-2 py-2 hover:bg-subtle",
+            project.id === activeRoomId && "bg-accent-dim",
+          )}
         >
-          <button className="min-w-0 flex-1 text-left" onClick={() => onOpen(project)} type="button">
+          <button
+            aria-current={project.id === activeRoomId ? "page" : undefined}
+            className="min-w-0 flex-1 text-left"
+            onClick={() => onOpen(project)}
+            type="button"
+          >
             <span className="block truncate text-sm font-medium text-copy-primary">
               {project.name}
             </span>
@@ -114,6 +125,7 @@ export function ProjectSidebar({
   onOpen,
   onRename,
   onDelete,
+  activeRoomId,
 }: ProjectSidebarProps) {
   return (
     <>
@@ -170,6 +182,7 @@ export function ProjectSidebar({
               onOpen={onOpen}
               onRename={onRename}
               onDelete={onDelete}
+              activeRoomId={activeRoomId}
             />
           </TabsContent>
           <TabsContent
@@ -182,6 +195,7 @@ export function ProjectSidebar({
               onOpen={onOpen}
               onRename={onRename}
               onDelete={onDelete}
+              activeRoomId={activeRoomId}
             />
           </TabsContent>
         </Tabs>
