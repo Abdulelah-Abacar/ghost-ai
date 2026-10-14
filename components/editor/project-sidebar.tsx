@@ -12,13 +12,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import type { Project } from "@/components/editor/use-project-dialogs";
+import type { Project } from "@/hooks/use-project-actions";
 
 interface ProjectSidebarProps {
   isOpen: boolean;
   onClose: () => void;
   projects: Project[];
   onCreate: () => void;
+  onOpen: (project: Project) => void;
   onRename: (project: Project) => void;
   onDelete: (project: Project) => void;
 }
@@ -42,11 +43,13 @@ function EmptyProjectsState() {
 function ProjectList({
   projects,
   ownership,
+  onOpen,
   onRename,
   onDelete,
 }: {
   projects: Project[];
   ownership: Project["ownership"];
+  onOpen: (project: Project) => void;
   onRename: (project: Project) => void;
   onDelete: (project: Project) => void;
 }) {
@@ -63,7 +66,7 @@ function ProjectList({
           key={project.id}
           className="group flex items-center gap-1 rounded-xl px-2 py-2 hover:bg-subtle"
         >
-          <button className="min-w-0 flex-1 text-left" type="button">
+          <button className="min-w-0 flex-1 text-left" onClick={() => onOpen(project)} type="button">
             <span className="block truncate text-sm font-medium text-copy-primary">
               {project.name}
             </span>
@@ -108,6 +111,7 @@ export function ProjectSidebar({
   onClose,
   projects,
   onCreate,
+  onOpen,
   onRename,
   onDelete,
 }: ProjectSidebarProps) {
@@ -163,6 +167,7 @@ export function ProjectSidebar({
             <ProjectList
               projects={projects}
               ownership="owned"
+              onOpen={onOpen}
               onRename={onRename}
               onDelete={onDelete}
             />
@@ -174,6 +179,7 @@ export function ProjectSidebar({
             <ProjectList
               projects={projects}
               ownership="shared"
+              onOpen={onOpen}
               onRename={onRename}
               onDelete={onDelete}
             />
