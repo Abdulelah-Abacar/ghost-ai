@@ -4,11 +4,11 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Prisma data foundation complete
+- Project APIs complete
 
 ## Current Goal
 
-- Implement project and collaborator persistence with Prisma.
+- Implement the next feature specification.
 
 ## Completed
 
@@ -22,6 +22,7 @@ Update this file whenever the current phase, active feature, or implementation s
 - Editor authentication: moved the editor entry point to `/editor` and added Clerk's built-in UserButton for profile settings and logout.
 - Project dialogs: added the editor home prompt and create button, live slug preview, create/rename/delete dialogs, mock owned/shared project lists, owner-only sidebar actions, and mobile sidebar scrim dismissal.
 - Prisma foundation: added the Project and ProjectCollaborator models, a development-cached Prisma client with Accelerate and PostgreSQL adapter branches, and the initial PostgreSQL migration. Generated Prisma Client and applied the migration successfully.
+- Project APIs: added authenticated project list/create endpoints and owner-only rename/delete endpoints. Unauthenticated requests return 401, non-owner mutations return 403, missing projects return 404, and creation defaults the project name to `Untitled Project` while using the schema's cuid ID strategy.
 
 ## In Progress
 
@@ -37,8 +38,8 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Architecture Decisions
 
-- Add decisions that affect the system design or data model.
+- A project's database ID is also its Liveblocks room ID. Editor-created projects use a slug plus a short random suffix; API callers without a supplied ID retain the Prisma cuid default.
 
 ## Session Notes
 
-- Design-system, editor chrome, authentication, project-dialog, and Prisma foundation specifications are complete. Project dialogs still use in-memory mock data. Prisma schema validation, client generation, migration application, and `npm run build` pass.
+- Design-system, editor chrome, authentication, project-dialog, Prisma foundation, project API, and editor-home wiring specifications are complete. Editor projects load server-side; project create, rename, delete, and workspace navigation use the API. `npm run build` passes.

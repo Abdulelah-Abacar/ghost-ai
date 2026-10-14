@@ -45,6 +45,11 @@
 - Template data follows the same node/edge schema as user-created canvas content.
 - Templates do not require a separate database record; they are resolved by template ID at import time.
 
+## Project Workspace IDs
+
+- A project's database ID is also its Liveblocks room ID.
+- New editor projects use a slugified name plus a short random suffix as that ID; API callers that omit an ID continue to use Prisma's cuid default.
+
 ## AI Generation Model
 
 ### Design Generation

@@ -12,12 +12,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import type { Project } from "@/components/editor/use-project-dialogs";
+import type { Project } from "@/hooks/use-project-actions";
 
 interface ProjectDialogsProps {
   dialog: "create" | "rename" | "delete" | null;
   name: string;
-  slug: string;
+  roomId: string;
+  error: string | null;
   project: Project | null;
   isLoading: boolean;
   onNameChange: (name: string) => void;
@@ -29,7 +30,8 @@ interface ProjectDialogsProps {
 export function ProjectDialogs({
   dialog,
   name,
-  slug,
+  roomId,
+  error,
   project,
   isLoading,
   onNameChange,
@@ -86,12 +88,13 @@ export function ProjectDialogs({
             </div>
             {dialog === "create" && (
               <p className="text-sm text-copy-muted">
-                Slug preview:{" "}
+                Room ID preview:{" "}
                 <span className="font-mono text-copy-secondary">
-                  {slug || "your-project-name"}
+                  {roomId || "project-name-a1b2c3d4"}
                 </span>
               </p>
             )}
+            {error && <p role="alert" className="text-sm text-state-error">{error}</p>}
             <DialogFooter className="border-surface-border bg-surface/50">
               <Button
                 type="button"
@@ -144,6 +147,7 @@ export function ProjectDialogs({
               {isLoading ? "Deleting…" : "Delete project"}
             </Button>
           </DialogFooter>
+          {error && <p role="alert" className="text-sm text-state-error">{error}</p>}
         </DialogContent>
       </Dialog>
     </>
