@@ -4,11 +4,11 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Foundation complete
+- Prisma data foundation complete
 
 ## Current Goal
 
-- Await the next feature specification.
+- Implement project and collaborator persistence with Prisma.
 
 ## Completed
 
@@ -21,6 +21,7 @@ Update this file whenever the current phase, active feature, or implementation s
 - Authentication: added ClerkProvider with the dark theme and app-token appearance variables, minimal responsive sign-in and sign-up pages, session-aware root redirects, and protected-by-default routing through `proxy.ts`.
 - Editor authentication: moved the editor entry point to `/editor` and added Clerk's built-in UserButton for profile settings and logout.
 - Project dialogs: added the editor home prompt and create button, live slug preview, create/rename/delete dialogs, mock owned/shared project lists, owner-only sidebar actions, and mobile sidebar scrim dismissal.
+- Prisma foundation: added the Project and ProjectCollaborator models, a development-cached Prisma client with Accelerate and PostgreSQL adapter branches, and the initial PostgreSQL migration. Generated Prisma Client and applied the migration successfully.
 
 ## In Progress
 
@@ -40,4 +41,4 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Session Notes
 
-- Design-system, editor chrome, authentication, and project-dialog specifications are complete. Project dialogs use in-memory mock data only; lint and TypeScript checks pass.
+- Design-system, editor chrome, authentication, project-dialog, and Prisma foundation specifications are complete. Project dialogs still use in-memory mock data. Prisma schema validation, client generation, migration application, and `npm run build` pass.
