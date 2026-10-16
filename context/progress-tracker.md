@@ -4,7 +4,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Project APIs complete
+- Liveblocks setup complete
 
 ## Current Goal
 
@@ -27,6 +27,14 @@ Update this file whenever the current phase, active feature, or implementation s
 - Share dialog implementation: added workspace Share button and dialog, collaborator list with Clerk name/avatar enrichment and email fallback, owner-only invite/remove controls backed by authenticated APIs, read-only collaborator access, and temporary project-link copy feedback.
 - Share-dialog verification: `npm run build` passes with the collaborator API routes included.
 - Share-dialog UI refinement: increased dialog spacing, clarified the invite and access sections, and separated member rows and the project-link control into readable surfaces.
+- Liveblocks setup: added shared presence and user metadata types, a cached server client, deterministic cursor colors, and a Clerk-authenticated room token route that checks project membership and creates private rooms as needed.
+- Liveblocks setup verification: `npm run build` passes. Added `@liveblocks/node`, which was missing from the installed dependencies despite the spec's dependency note.
+- Base collaborative canvas: replaced the workspace canvas placeholder with a client-side Liveblocks room wrapper and suspense-backed React Flow canvas. Added shared node color/shape and canvas node/edge types, loose connections, fit-to-view, minimap, and dot background.
+- Base collaborative canvas verification: `npm run build` passes, including TypeScript checks.
+- Shape panel: added a floating bottom-center toolbar with draggable icons for all six node shapes. Drag payloads include shape and default dimensions; dropping on the canvas converts screen coordinates and adds a collaborative `canvasNode` with an empty label and default color. Added a basic bordered rectangle renderer for the custom node type.
+- Shape panel verification: `npm run build` passes with TypeScript checks.
+- Shape panel provider fix: wrapped the React Flow canvas subtree in `ReactFlowProvider` so `useReactFlow` has the required context. `npm run build` passes.
+- Canvas shape rendering fix: custom canvas nodes now render geometry based on their stored shape (rectangle, diamond, circle, pill, cylinder, or hexagon), so dropped nodes retain their individual appearance.
 
 ## In Progress
 
@@ -46,4 +54,4 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Session Notes
 
-- Design-system, editor chrome, authentication, project-dialog, Prisma foundation, project API, editor-home wiring, editor workspace shell, and share-dialog specifications are complete. Editor projects load server-side; project create, rename, delete, and workspace navigation use the API. `/editor/[roomId]` checks access before rendering and displays the workspace shell. Share APIs enforce membership for listing and ownership for mutations. `npm run build` passes.
+- Design-system, editor chrome, authentication, project-dialog, Prisma foundation, project API, editor-home wiring, editor workspace shell, share-dialog, Liveblocks setup, base collaborative canvas, and shape panel specifications are complete. Editor projects load server-side; project create, rename, delete, and workspace navigation use the API. `/editor/[roomId]` checks access before rendering and hosts a Liveblocks-backed React Flow canvas with draggable shape creation. Share APIs enforce membership for listing and ownership for mutations. Liveblocks access tokens are issued only after verifying membership for the project room. `npm run build` passes.

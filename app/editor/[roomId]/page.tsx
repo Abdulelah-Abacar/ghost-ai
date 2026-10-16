@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import { AccessDenied } from "@/components/editor/access-denied";
 import { EditorLayout } from "@/components/editor/editor-layout";
+import { CanvasRoom } from "@/components/editor/canvas-room";
 import { getCurrentClerkIdentity, getProjectAccess, getEditorProjects } from "@/lib/project-access";
 
 interface WorkspacePageProps {
@@ -29,12 +30,7 @@ export default async function WorkspacePage({ params }: WorkspacePageProps) {
       activeRoomId={project.id}
       projectName={project.name}
     >
-      <div className="flex h-full items-center justify-center bg-base px-6 text-center">
-        <div className="space-y-2">
-          <h1 className="text-xl font-semibold tracking-tight text-copy-primary">Canvas workspace</h1>
-          <p className="text-sm text-copy-muted">Your system design canvas will appear here.</p>
-        </div>
-      </div>
+      <CanvasRoom roomId={project.id} />
     </EditorLayout>
   );
 }
